@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 歌曲管理
@@ -149,6 +150,35 @@ public class SongController {
     public Object selectBySingerId(HttpServletRequest request) {
         String singerId = request.getParameter("singerId");
         return  songService.selectBysingerId(Integer.parseInt(singerId));
+    }
+
+    /**
+     * 根据歌曲id查询歌曲
+     * */
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    public Object selectBySongId(HttpServletRequest request) {
+        String songId = request.getParameter("songId");
+        return  songService.selectBySongId(Integer.parseInt(songId));
+    }
+
+    /**
+     * 根据歌曲名称查询歌曲
+     * */
+    @RequestMapping(value = "/songOfSongName", method = RequestMethod.GET)
+    public Object selectBySongName(HttpServletRequest request) {
+        JSONObject jsonObject = new JSONObject();
+        String songName = request.getParameter("songName");
+        List<Song> obj = songService.selectBySongName(songName);
+        if(obj.size() != 0){
+            jsonObject.put(Consts.OBJ,obj);
+            jsonObject.put(Consts.CODE,1);
+            jsonObject.put(Consts.MSG,"添加成功");
+
+        }else {
+            jsonObject.put(Consts.CODE,0);
+            jsonObject.put(Consts.MSG,String.format("曲库中不存在<%s>",songName));
+        }
+        return  jsonObject;
     }
 
     /**

@@ -18,6 +18,8 @@ public class Consts {
     public static final String CODE = "code";
     /* 返回信息 */
     public static final String MSG = "msg";
+    /* 返回对象 */
+    public static final String OBJ = "obj";
 
     public static Singer reSinger(HttpServletRequest request){
 //        String id = request.getParameter("id").trim();          //主键
