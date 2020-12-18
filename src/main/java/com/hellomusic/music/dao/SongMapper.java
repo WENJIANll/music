@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SongListMapper {
+public interface SongMapper {
     /* 增加 */
     public int insert(Song song);
 
@@ -22,6 +22,9 @@ public interface SongListMapper {
 
     /* 查询所有歌手 */
     public List<Song> selectAllSong();
+
+    /* 根据歌手id查询 */
+    public List<Song> selectBysingerId(Integer id);
 
     /* 根据歌手名称模糊查询 */
     public List<Song> selectBySongName(String subname);

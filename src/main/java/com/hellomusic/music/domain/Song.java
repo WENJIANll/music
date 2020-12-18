@@ -5,11 +5,11 @@ import java.util.Date;
 
 public class Song implements Serializable {
     private Integer id;
-    private Integer singer_id;
+    private Integer singerId;
     private String name;
     private String introduction;
-    private Date create_time;
-    private Date update_time;
+    private Date createTime;
+    private Date updateTime;
     private String pic;
     /* 歌词 */
     private String lyric;
@@ -23,12 +23,12 @@ public class Song implements Serializable {
         this.id = id;
     }
 
-    public Integer getSinger_id() {
-        return singer_id;
+    public Integer getsingerId() {
+        return singerId;
     }
 
-    public void setSinger_id(Integer singer_id) {
-        this.singer_id = singer_id;
+    public void setsingerId(Integer singerId) {
+        this.singerId = singerId;
     }
 
     public String getName() {
@@ -47,20 +47,20 @@ public class Song implements Serializable {
         this.introduction = introduction;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public Date getcreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setcreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdate_time() {
-        return update_time;
+    public Date getupdateTime() {
+        return updateTime;
     }
 
-    public void setUpdate_time(Date update_time) {
-        this.update_time = update_time;
+    public void setupdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getPic() {
