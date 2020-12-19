@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hellomusic.music.dao.CommentMapper">
+    <resultMap id="BaseResultMap" type="com.hellomusic.music.domain.Comment" >
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="content_id" jdbcType="VARCHAR" property="contentId"/>
+        <result column="object_id" jdbcType="INTEGER" property="objectId"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="up" jdbcType="INTEGER" property="up"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,content_id,object_id,content,create_time,up
+    </sql>
+
+    <insert id="insert" parameterType="com.hellomusic.music.domain.Comment">
+        insert into comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="contentId != null">
+                content_id,
+            </if>
+            <if test="objectId != null">
+                object_id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            create_time,up
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="contentId != null">
+                #{contentId},
+            </if>
+            <if test="objectId != null">
+                #{objectId},
+            </if>
+            <if test="content != null">
+                #{content},
+            </if>
+            now(),0
+        </trim>
+    </insert>
+
+    <select id="selectComByUID" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+        where  content_id = #{contentId} and object_id = #{objectId}
+    </select>
+</mapper>
