@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hellomusic.music.dao.RankMapper">
+    <resultMap id="BaseResultMap" type="com.hellomusic.music.domain.Rank" >
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="content_id" jdbcType="VARCHAR" property="contentId"/>
+        <result column="object_id" jdbcType="INTEGER" property="objectId"/>
+        <result column="consumer_id" jdbcType="INTEGER" property="consumerId"/>
+        <result column="score" jdbcType="INTEGER" property="score"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,content_id,object_id,consumer_id,score
+    </sql>
+
+    <insert id="insert" parameterType="com.hellomusic.music.domain.Rank">
+        insert into rank
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="contentId != null">
+                content_id,
+            </if>
+            <if test="objectId != null">
+                object_id,
+            </if>
+            <if test="consumerId != null">
+                consumer_id,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="contentId != null">
+                #{contentId},
+            </if>
+            <if test="objectId != null">
+                #{objectId},
+            </if>
+            <if test="consumerId != null">
+                #{consumerId},
+            </if>
+            <if test="score != null">
+                #{score},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="scoreSum" resultType="java.lang.Integer" >
+        select COALESCE(sum(score),0) as scoreSum
+        from Rank
+        where content_id=#{contentId} and object_id=#{objectId}
+    </select>
+
+    <select id="sume" resultType="java.lang.Integer" >
+        select COALESCE(count(*),0) as Sumr
+        from Rank
+        where content_id=#{contentId} and object_id=#{objectId}
+    </select>
+
+</mapper>
