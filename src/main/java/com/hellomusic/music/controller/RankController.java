@@ -67,6 +67,9 @@ public class RankController {
         if(objectId != null){
             contentId = "songList";
         }
-        return rankService.caculScore(rankService.scoreSum(contentId, Integer.valueOf(objectId)),rankService.sume(contentId, Integer.valueOf(objectId)));
+        if(rankService.sume(contentId, Integer.valueOf(objectId)) != 0){
+            return rankService.caculScore(rankService.scoreSum(contentId, Integer.valueOf(objectId)),rankService.sume(contentId, Integer.valueOf(objectId)));
+        }
+        return 0;
     }
 }
