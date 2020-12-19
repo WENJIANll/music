@@ -137,4 +137,11 @@
         where name like #{subname}
     </select>
 
+    <select id="selectByLikeSongName" resultMap="ResultMapWithBLOBS" parameterType="java.lang.String">
+        select
+        <include refid="Blob_Column_List"/>
+        from Song
+        where name like #{subname}
+    </select>
+
 </mapper>

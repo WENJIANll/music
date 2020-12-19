@@ -182,6 +182,14 @@ public class SongController {
     }
 
     /**
+     * 根据歌曲名称模糊查询歌曲
+     * */
+    @RequestMapping(value = "/likeSongOfName", method = RequestMethod.GET)
+    public Object selectByLikeSongName(HttpServletRequest request) {
+        String songName = request.getParameter("songName");
+        return songService.selectByLikeSongName("%"+songName+"%");
+    }
+    /**
      * 跟新歌曲封面图片
      * */
     @RequestMapping(value = "/updateSongPic",method = RequestMethod.POST)

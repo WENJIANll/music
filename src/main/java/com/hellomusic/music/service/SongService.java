@@ -26,4 +26,7 @@ public interface SongService {
 
     /* 根据歌手名称模糊查询 */
     public List<Song> selectBySongName(String subname);
+
+    /* 根据歌曲名称模糊查询 */
+    public List<Song> selectByLikeSongName(String subname);
 }

@@ -48,4 +48,9 @@ public class SongServiceImpl implements SongService {
     public List<Song> selectBySongName(String subname) {
         return songMapper.selectBySongName(subname);
     }
+
+    @Override
+    public List<Song> selectByLikeSongName(String subname) {
+        return songMapper.selectByLikeSongName(subname);
+    }
 }
