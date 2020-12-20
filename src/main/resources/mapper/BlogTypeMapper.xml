@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hellomusic.music.dao.BlogTypeMapper">
+    <resultMap id="BaseResultMap" type="com.hellomusic.music.domain.BlogType" >
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="descc" jdbcType="LONGVARCHAR" property="descc"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,descc
+    </sql>
+
+    <insert id="addBlogType" parameterType="com.hellomusic.music.domain.BlogType">
+        insert into blogtype
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="descc != null">
+                descc,
+            </if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="descc != null">
+                #{descc},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectAllBlogType" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from blogtype
+    </select>
+
+</mapper>
